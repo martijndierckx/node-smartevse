@@ -1,0 +1,35 @@
+{
+  "currentState": {
+    "old": 160,
+    "new": 0
+  },
+  "errorState": {
+    "old": 161,
+    "new": 0
+  },
+  "maxChargingCurrent": {
+    "old": 162,
+    "new": 0
+  },
+  "minChargingCurrent": {
+    "old": 163,
+    "new": 0
+  },
+  "chargingCurrent": {
+    "old": 166,
+    "new": 0
+  },
+  "access": {
+    "old": 167,
+    "new": 0
+  },
+  "mode": {
+    "old": 168,
+    "new": 0
+  },
+
+  "maxAllowedChargingCurrent": {
+    "old": 224,
+    "new": 0
+  }
+}
