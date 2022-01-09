@@ -2,7 +2,7 @@
 Allows reading values from, and configuring SmartEVSE's over Modbus TCP
 
 ## Install
-```npm i --save node-smartevse```
+```npm i --save smartevse```
 
 ## Example
 ```

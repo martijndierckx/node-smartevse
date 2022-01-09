@@ -1,5 +1,5 @@
 {
-  "name": "node-smartevse",
+  "name": "smartevse",
   "version": "0.0.1",
   "description": "Allows reading values from, and configuring SmartEVSE's over Modbus TCP",
   "main": "dist/index.js",
@@ -36,5 +36,9 @@
     "evse",
     "modbus",
     "tcp"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/martijndierckx/node-smartevse/issues"
+  },
+  "homepage": "https://github.com/martijndierckx/node-smartevse#readme"
 }
