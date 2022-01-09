@@ -1,6 +1,6 @@
 {
   "name": "smartevse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Allows reading values from, and configuring SmartEVSE's over Modbus TCP",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
