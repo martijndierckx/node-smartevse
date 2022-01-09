@@ -3,10 +3,10 @@ import { Socket } from 'net';
 
 export class ModbusConnection {
   private socket: Socket;
-  conn: Modbus.ModbusTCPClient = null;
+  private conn: Modbus.ModbusTCPClient = null;
 
   public static async connect(config: { port: number; host: string; slaveId: number }): Promise<ModbusConnection> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const modbusConn = new ModbusConnection();
       modbusConn.socket = new Socket();
       modbusConn.conn = new Modbus.client.TCP(modbusConn.socket, config.slaveId);
@@ -15,12 +15,18 @@ export class ModbusConnection {
       modbusConn.socket.on('connect', () => {
         resolve(modbusConn);
       });
-      modbusConn.socket.on('close', () => {
+      modbusConn.socket.on('end', () => {
         modbusConn.conn = null;
         // TODO reconnect on request?
       });
 
       modbusConn.socket.connect(config);
+    });
+  }
+
+  public async disconnect() {
+    this.socket.end(() => {
+      return;
     });
   }
 

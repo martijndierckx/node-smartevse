@@ -2,7 +2,7 @@
   "name": "node-smartevse",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/SmartEVSE.js",
+  "main": "dist/index.js",
   "author": "Martijn Dierckx",
   "license": "ISC",
   "dependencies": {
@@ -23,6 +23,7 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "watch": "tsc -w"
   }
 }
