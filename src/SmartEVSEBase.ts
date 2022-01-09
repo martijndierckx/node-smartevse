@@ -1,4 +1,4 @@
-import type { FirmwareVersion } from '.';
+import { EnergyMeterType, FirmwareVersion } from './Enums';
 import type { ModbusConnection } from './ModBusConnection';
 import AddressMapping from './AddressMapping.json';
 
@@ -24,7 +24,35 @@ export class SmartEVSEBase {
    * Translates the name of value to a modbus address taking in to account the FW version (addresses are different between FW versions)
    * @param {string} name Address name
    */
-   protected getMappedAddress(name: string): number {
+  protected getMappedAddress(name: string): number {
     return AddressMapping[name][this.config.fw] as number;
+  }
+
+  /**
+   * Helper function to interpret the types of the multiple energy meters
+   */
+  protected interpretMeterType(type: number): EnergyMeterType {
+    switch (type) {
+      case 0:
+        return EnergyMeterType.Disabled;
+      case 1:
+        return EnergyMeterType.Sensorbox;
+      case 2:
+        return EnergyMeterType.Phoenix;
+      case 3:
+        return EnergyMeterType.Finder;
+      case 4:
+        return EnergyMeterType.Eastron;
+      case 5:
+        return EnergyMeterType.ABB;
+      case 6:
+        return this.config.fw == FirmwareVersion.New ? EnergyMeterType.Solaredge : EnergyMeterType.Custom;
+      case 7: // New FW only
+        return EnergyMeterType.Wago;
+      case 8: // New FW only
+        return EnergyMeterType.Custom;
+    }
+
+    return null;
   }
 }

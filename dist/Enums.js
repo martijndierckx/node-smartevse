@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SensorboxGridType = exports.EnergyMeterType = exports.ExternalSwitchConfiguration = exports.LoadBalancingConfig = exports.CableLockType = exports.ConnectionType = exports.Mode = exports.ErrorState = exports.State = exports.FirmwareVersion = void 0;
+exports.EnergyMeterCaptureType = exports.SensorboxGridType = exports.EnergyMeterType = exports.ExternalSwitchConfiguration = exports.LoadBalancingConfig = exports.CableLockType = exports.ConnectionType = exports.Mode = exports.ErrorState = exports.State = exports.FirmwareVersion = void 0;
 var FirmwareVersion;
 (function (FirmwareVersion) {
     FirmwareVersion["New"] = ">2.20";
@@ -75,4 +75,9 @@ var SensorboxGridType;
     SensorboxGridType[SensorboxGridType["FourWire"] = 4] = "FourWire";
     SensorboxGridType[SensorboxGridType["ThreeWire"] = 3] = "ThreeWire";
 })(SensorboxGridType = exports.SensorboxGridType || (exports.SensorboxGridType = {}));
+var EnergyMeterCaptureType;
+(function (EnergyMeterCaptureType) {
+    EnergyMeterCaptureType["EverythingIncludingSolar"] = "mains+evse+pv";
+    EnergyMeterCaptureType["EverythingWithoutSolar"] = "mains+evse";
+})(EnergyMeterCaptureType = exports.EnergyMeterCaptureType || (exports.EnergyMeterCaptureType = {}));
 //# sourceMappingURL=Enums.js.map

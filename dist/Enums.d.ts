@@ -62,3 +62,7 @@ export declare enum SensorboxGridType {
     FourWire = 4,
     ThreeWire = 3
 }
+export declare enum EnergyMeterCaptureType {
+    EverythingIncludingSolar = "mains+evse+pv",
+    EverythingWithoutSolar = "mains+evse"
+}

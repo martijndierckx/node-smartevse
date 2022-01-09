@@ -52,9 +52,9 @@ export declare class SmartEVSENodeConfiguration extends SmartEVSEBase {
     /**
      * Returns the type of the configured energy meter
      */
-    get energyMeterType(): Promise<EnergyMeterType>;
+    get vehicleEnergyMeterType(): Promise<EnergyMeterType>;
     /**
      * Returns the Modbus address of the configured energy meter
      */
-    get energyMeterAddress(): Promise<number>;
+    get vehicleEnergyMeterAddress(): Promise<number>;
 }

@@ -154,44 +154,17 @@ class SmartEVSENodeConfiguration extends SmartEVSEBase_1.SmartEVSEBase {
     /**
      * Returns the type of the configured energy meter
      */
-    get energyMeterType() {
+    get vehicleEnergyMeterType() {
         return new Promise(async (resolve) => {
-            const type = await this.modbusConn.getRegister(this.getMappedAddress('energyMeterType'));
-            switch (type) {
-                case 0:
-                    resolve(Enums_1.EnergyMeterType.Disabled);
-                    break;
-                case 1:
-                    resolve(Enums_1.EnergyMeterType.Sensorbox);
-                    break;
-                case 2:
-                    resolve(Enums_1.EnergyMeterType.Phoenix);
-                    break;
-                case 3:
-                    resolve(Enums_1.EnergyMeterType.Finder);
-                    break;
-                case 4:
-                    resolve(Enums_1.EnergyMeterType.Eastron);
-                    break;
-                case 5:
-                    resolve(Enums_1.EnergyMeterType.ABB);
-                    break;
-                case 6:
-                    resolve(this.config.fw == Enums_1.FirmwareVersion.New ? Enums_1.EnergyMeterType.Solaredge : Enums_1.EnergyMeterType.Custom);
-                    break;
-                case 7: // New FW only
-                    resolve(Enums_1.EnergyMeterType.Wago);
-                    break;
-                case 8: // New FW only
-                    resolve(Enums_1.EnergyMeterType.Custom);
-                    break;
-            }
+            const type = await this.modbusConn.getRegister(this.getMappedAddress('vehicleEnergyMeterType'));
+            const meterType = this.interpretMeterType(type);
+            resolve(meterType);
         });
     }
     /**
      * Returns the Modbus address of the configured energy meter
      */
-    get energyMeterAddress() {
+    get vehicleEnergyMeterAddress() {
         return this.modbusConn.getRegister(this.getMappedAddress('energyMeterAddress'));
     }
 }

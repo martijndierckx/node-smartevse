@@ -69,6 +69,54 @@ class SmartEVSESystemConfiguration extends SmartEVSEBase_1.SmartEVSEBase {
     get ctCalibrationMultiplier() {
         return this.modbusConn.getRegister(this.getMappedAddress('ctCalibrationMultiplier'));
     }
+    /**
+     * Returns the type of the configured mains energy meter
+     */
+    get mainsEnergyMeterType() {
+        return new Promise(async (resolve) => {
+            const type = await this.modbusConn.getRegister(this.getMappedAddress('mainsEnergyMeterType'));
+            const meterType = this.interpretMeterType(type);
+            resolve(meterType);
+        });
+    }
+    /**
+     * Returns the Modbus address of the configured mains energy meter
+     */
+    get mainsEnergyMeterAddress() {
+        return this.modbusConn.getRegister(this.getMappedAddress('mainsEnergyMeterAddress'));
+    }
+    /**
+     * Returns which energy types are measured by the mains energy meter
+     */
+    get mainsEnergyMeterCaptureType() {
+        return new Promise(async (resolve) => {
+            const type = await this.modbusConn.getRegister(this.getMappedAddress('mainsEnergyMeterCaptureType'));
+            switch (type) {
+                case 0:
+                    resolve(Enums_1.EnergyMeterCaptureType.EverythingIncludingSolar);
+                    break;
+                case 1:
+                    resolve(Enums_1.EnergyMeterCaptureType.EverythingWithoutSolar);
+                    break;
+            }
+        });
+    }
+    /**
+     * Returns the type of the configured solar energy meter
+     */
+    get solarEnergyMeterType() {
+        return new Promise(async (resolve) => {
+            const type = await this.modbusConn.getRegister(this.getMappedAddress('solarEnergyMeterType'));
+            const meterType = this.interpretMeterType(type);
+            resolve(meterType);
+        });
+    }
+    /**
+     * Returns the Modbus address of the configured solar energy meter
+     */
+    get solarEnergyMeterAddress() {
+        return this.modbusConn.getRegister(this.getMappedAddress('solarEnergyMeterAddress'));
+    }
 }
 exports.SmartEVSESystemConfiguration = SmartEVSESystemConfiguration;
 //# sourceMappingURL=SmartEVSESystemConfiguration.js.map

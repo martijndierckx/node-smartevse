@@ -1,4 +1,4 @@
-import type { FirmwareVersion } from '.';
+import { EnergyMeterType, FirmwareVersion } from './Enums';
 import type { ModbusConnection } from './ModBusConnection';
 export declare type Config = {
     host: string;
@@ -18,4 +18,8 @@ export declare class SmartEVSEBase {
      * @param {string} name Address name
      */
     protected getMappedAddress(name: string): number;
+    /**
+     * Helper function to interpret the types of the multiple energy meters
+     */
+    protected interpretMeterType(type: number): EnergyMeterType;
 }

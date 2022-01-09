@@ -72,11 +72,11 @@
     "<=2.20": 202,
     ">2.20": 0
   },
-  "energyMeterType": {
+  "vehicleEnergyMeterType": {
     "<=2.20": 203,
     ">2.20": 0
   },
-  "energyMeterAddress": {
+  "vehicleEnergyMeterAddress": {
     "<=2.20": 204,
     ">2.20": 0
   },
@@ -99,6 +99,26 @@
   },
   "ctCalibrationMultiplier": {
     "<=2.20": 228,
+    ">2.20": 0
+  },
+  "mainsEnergyMeterType": {
+    "<=2.20": 229,
+    ">2.20": 0
+  },
+  "mainsEnergyMeterAddress": {
+    "<=2.20": 230,
+    ">2.20": 0
+  },
+  "mainsEnergyMeterCaptureType": {
+    "<=2.20": 231,
+    ">2.20": 0
+  },
+  "solarEnergyMeterType": {
+    "<=2.20": 232,
+    ">2.20": 0
+  },
+  "solarEnergyMeterAddress": {
+    "<=2.20": 233,
     ">2.20": 0
   }
 }

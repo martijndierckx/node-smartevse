@@ -1,4 +1,4 @@
-import { Mode, SensorboxGridType } from './Enums';
+import { EnergyMeterCaptureType, EnergyMeterType, Mode, SensorboxGridType } from './Enums';
 import { SmartEVSEBase } from './SmartEVSEBase';
 export declare class SmartEVSESystemConfiguration extends SmartEVSEBase {
     /**
@@ -30,4 +30,24 @@ export declare class SmartEVSESystemConfiguration extends SmartEVSEBase {
      * @returns {number}
      */
     get ctCalibrationMultiplier(): Promise<number>;
+    /**
+     * Returns the type of the configured mains energy meter
+     */
+    get mainsEnergyMeterType(): Promise<EnergyMeterType>;
+    /**
+     * Returns the Modbus address of the configured mains energy meter
+     */
+    get mainsEnergyMeterAddress(): Promise<number>;
+    /**
+     * Returns which energy types are measured by the mains energy meter
+     */
+    get mainsEnergyMeterCaptureType(): Promise<EnergyMeterCaptureType>;
+    /**
+     * Returns the type of the configured solar energy meter
+     */
+    get solarEnergyMeterType(): Promise<EnergyMeterType>;
+    /**
+     * Returns the Modbus address of the configured solar energy meter
+     */
+    get solarEnergyMeterAddress(): Promise<number>;
 }

@@ -1,4 +1,4 @@
-import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType, FirmwareVersion } from "./Enums";
+import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType } from "./Enums";
 import { SmartEVSEBase } from "./SmartEVSEBase";
 
 export class SmartEVSENodeConfiguration extends SmartEVSEBase {
@@ -163,45 +163,18 @@ export class SmartEVSENodeConfiguration extends SmartEVSEBase {
   /**
    * Returns the type of the configured energy meter
    */
-  public get energyMeterType(): Promise<EnergyMeterType> {
+  public get vehicleEnergyMeterType(): Promise<EnergyMeterType> {
     return new Promise(async (resolve) => {
-      const type = await this.modbusConn.getRegister(this.getMappedAddress('energyMeterType'));
-      switch (type) {
-        case 0:
-          resolve(EnergyMeterType.Disabled);
-          break;
-        case 1:
-          resolve(EnergyMeterType.Sensorbox);
-          break;
-        case 2:
-          resolve(EnergyMeterType.Phoenix);
-          break;
-        case 3:
-          resolve(EnergyMeterType.Finder);
-          break;
-        case 4:
-          resolve(EnergyMeterType.Eastron);
-          break;
-        case 5:
-          resolve(EnergyMeterType.ABB);
-          break;
-        case 6:
-          resolve(this.config.fw == FirmwareVersion.New ? EnergyMeterType.Solaredge : EnergyMeterType.Custom);
-          break;
-        case 7: // New FW only
-          resolve(EnergyMeterType.Wago);
-          break;
-        case 8: // New FW only
-          resolve(EnergyMeterType.Custom);
-          break;
-      }
+      const type = await this.modbusConn.getRegister(this.getMappedAddress('vehicleEnergyMeterType'));
+      const meterType = this.interpretMeterType(type);
+      resolve(meterType);
     });
   }
 
   /**
    * Returns the Modbus address of the configured energy meter
    */
-  public get energyMeterAddress(): Promise<number> {
+  public get vehicleEnergyMeterAddress(): Promise<number> {
     return this.modbusConn.getRegister(this.getMappedAddress('energyMeterAddress'));
   }
 }
