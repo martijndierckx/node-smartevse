@@ -1,11 +1,11 @@
-# node-SmartEVSE
-Allows reading values from, and configuring SmartEVSE's over Modbus TCP
+# SmartEVSE
+A nodejs package which allows reading values from, and configuring SmartEVSE's over Modbus TCP
 
 ## Install
 ```npm i --save smartevse```
 
 ## Example
-```
+```javascript
 import SmartEVSE, { FirmwareVersion } from 'smartevse';
 
 const smartEVSE = await SmartEVSE.connect({
