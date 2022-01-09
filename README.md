@@ -23,6 +23,10 @@ console.log(values);
 await smartEVSE.disconnect();
 ```
 
+## Firmware versions
+FW 2.30 introduced a new set of Modbus addresses for the different registers. This package supports both the old set (<=2.20) and the new set (>2.20).
+We'll default to the new set, so if you are using a SmartEVSE on FW 2.20, it's important to provide the 'old' FW version when setting up the connection.
+
 ## Typescript & IntelliSense
 Use a proper code editor like Visual Studio Code which will help you with IntelliSense & inline documentation.
 
