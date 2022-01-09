@@ -1,4 +1,4 @@
-import SmartEVSE, { FirmwareVersion } from '../index';
+import SmartEVSE, { FirmwareVersion } from '../src/index';
 
 (async () => {
   const smartEVSE = await SmartEVSE.connect({
@@ -9,7 +9,8 @@ import SmartEVSE, { FirmwareVersion } from '../index';
     state: await smartEVSE.state,
     current: await smartEVSE.chargingCurrent,
     max: await smartEVSE.maxChargingCurrent,
-    externalSwitchConfiguration: await smartEVSE.externalSwitchConfiguration
+    externalSwitchConfiguration: await smartEVSE.externalSwitchConfiguration,
+    meterType: await smartEVSE.mainsEnergyMeterType
   };
   console.log(x);
 
