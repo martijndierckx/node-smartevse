@@ -92,5 +92,13 @@
   "maxMainsCurrent": {
     "<=2.20": 226,
     ">2.20": 0
+  },
+  "sensorboxGridType": {
+    "<=2.20": 227,
+    ">2.20": 0
+  },
+  "ctCalibrationMultiplier": {
+    "<=2.20": 228,
+    ">2.20": 0
   }
 }

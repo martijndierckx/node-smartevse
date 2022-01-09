@@ -66,3 +66,8 @@ export enum EnergyMeterType {
   Phoenix = 'phoenix',
   Custom = 'custom'
 }
+
+export enum SensorboxGridType {
+  FourWire = 4,
+  ThreeWire = 3
+}

@@ -1,4 +1,4 @@
-import { Mode } from './Enums';
+import { Mode, SensorboxGridType } from './Enums';
 import { SmartEVSEBase } from './SmartEVSEBase';
 
 export class SmartEVSESystemConfiguration extends SmartEVSEBase {
@@ -46,5 +46,30 @@ export class SmartEVSESystemConfiguration extends SmartEVSEBase {
    */
   public get maxMainsCurrent(): Promise<number> {
     return this.modbusConn.getRegister(this.getMappedAddress('maxMainsCurrent'));
+  }
+
+  /**
+   * Returns the configured sensorbox grid type
+   */
+   public get sensorboxGridType(): Promise<SensorboxGridType> {
+    return new Promise(async (resolve) => {
+      const mode = await this.modbusConn.getRegister(this.getMappedAddress('sensorboxGridType'));
+      switch (mode) {
+        case 0:
+          resolve(SensorboxGridType.FourWire);
+          break;
+        case 1:
+          resolve(SensorboxGridType.ThreeWire);
+          break;
+      }
+    });
+  }
+
+  /**
+   * Returns CT calibration multiplier
+   * @returns {number}
+   */
+   public get ctCalibrationMultiplier(): Promise<number> {
+    return this.modbusConn.getRegister(this.getMappedAddress('ctCalibrationMultiplier'));
   }
 }
