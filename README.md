@@ -1,8 +1,10 @@
 # SmartEVSE
-A nodejs package which allows reading values from, and configuring SmartEVSE's over Modbus TCP
+A nodejs package  which allows reading values from, and configuring SmartEVSE's over Modbus TCP
+
+[![npm](https://badgen.net/npm/v/smartevse)](https://www.npmjs.com/package/smartevse)
 
 ## Install
-```npm i --save smartevse```
+```npm i --save smartevse``` 
 
 ## Example
 ```javascript
@@ -29,6 +31,6 @@ Requires a Modbus TCP connection to your SmartEVSE.
 If you are in the market for a cheap Modbus TCP gateway, have a look at this one:
 https://www.aliexpress.com/item/4001292376481.html
 
-In theory, a direct RS485 connection should also be feasible to implement. You are welcome to contribute it in the jsmodbus dependency :-)
+In theory, a direct RS485 connection should also be feasible to implement. You are welcome to contribute it in the [jsmodbus](https://github.com/Cloud-Automation/node-modbus) dependency :-)
 
 Tested with a single SmartEVSE on FW 2.20 together with an SDM630
