@@ -1,11 +1,11 @@
-import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType } from "./Enums";
-import { SmartEVSEBase } from "./SmartEVSEBase";
+import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType, FirmwareVersion } from './Enums';
+import { SmartEVSEBase } from './SmartEVSEBase';
 
 export class SmartEVSENodeConfiguration extends SmartEVSEBase {
   /**
    * Returns the way the charging cable is connected to the Smart EVSE
    */
-   public get connectionType(): Promise<ConnectionType> {
+  public get connectionType(): Promise<ConnectionType> {
     return new Promise(async (resolve) => {
       const connType = await this.modbusConn.getRegister(this.getMappedAddress('connectionType'));
       switch (connType) {
@@ -96,6 +96,7 @@ export class SmartEVSENodeConfiguration extends SmartEVSEBase {
   /**
    * Returns the configured maximum accepted charging current by the vehicle
    * @returns {number} Amps
+   * Moved to System Configuration in newer FW versions
    */
   public get startChargingAtSurplusSolarCurrent(): Promise<number> {
     return this.modbusConn.getRegister(this.getMappedAddress('startChargingAtSurplusSolarCurrent'));
@@ -104,6 +105,7 @@ export class SmartEVSENodeConfiguration extends SmartEVSEBase {
   /**
    * Returns the configured solar charging time at 6 Amps
    * @returns {number} mins (0: Disabled)
+   * Moved to System Configuration in newer FW versions
    */
   public get stopSolarChargingAt6AmpsAfter(): Promise<number> {
     return this.modbusConn.getRegister(this.getMappedAddress('stopSolarChargingAt6AmpsAfter'));
@@ -146,6 +148,8 @@ export class SmartEVSENodeConfiguration extends SmartEVSEBase {
 
   /**
    * Returns how much grid power (A) is allowed when solar charging
+   * @returns {number} Amps
+   * Moved to System Configuration in newer FW versions
    */
   public get allowedGridPowerWhenSolarCharging(): Promise<number> {
     return this.modbusConn.getRegister(this.getMappedAddress('allowedGridPowerWhenSolarCharging'));

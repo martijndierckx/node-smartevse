@@ -13,15 +13,35 @@ export declare class SmartEVSECurrentValues extends SmartEVSEBase {
      */
     get errorState(): Promise<ErrorState>;
     /**
+     * Returns the current charging current (in this charging session?)
+     * @returns {number} Amps
+     */
+    get chargingCurrent(): Promise<number>;
+    /**
+     * Returns the current mode in which the SmartEVSE operates
+     */
+    get nodeMode(): Promise<Mode>;
+    /**
+     * Returns the number of seconds remaining on the solar timer
+     * @returns {number} seconds
+     */
+    get solarTimer(): Promise<number>;
+    /**
+     * Returns ?
+     * @returns {boolean} ?
+     * @todo Better describe this method/output
+     */
+    get access(): Promise<boolean>;
+    /**
+     * Returns the minimum achieved charging current (in this charging session?)
+     * @returns {number} Amps
+     */
+    get minChargingCurrent(): Promise<number>;
+    /**
      * Returns the maximum achieved charging current (in this charging session?)
      * @returns {number} Amps
      */
     get maxChargingCurrent(): Promise<number>;
-    /**
-     * Returns the minimym achieved charging current (in this charging session?)
-     * @returns {number} Amps
-     */
-    get minChargingCurrent(): Promise<number>;
     /**
      * Returns the number of used phases (in this charging session?)
      */
@@ -31,18 +51,13 @@ export declare class SmartEVSECurrentValues extends SmartEVSEBase {
      */
     get realChargingCurrent(): Promise<number>;
     /**
-     * Returns the current charging current (in this charging session?)
-     * @returns {number} Amps
+     * Returns the temperature of the Smart EVSE
+     * @returns {number} K
      */
-    get chargingCurrent(): Promise<number>;
+    get temperature(): Promise<number>;
     /**
-     * Returns ?
-     * @returns {boolean} ?
-     * @todo Better describe this method/output
+     * Returns the serial number of the Smart EVSE
+     * @returns {number}
      */
-    get access(): Promise<boolean>;
-    /**
-     * Returns the current mode in which the SmartEVSE operates
-     */
-    get nodeMode(): Promise<Mode>;
+    get serial(): Promise<number>;
 }

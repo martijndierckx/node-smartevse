@@ -1,5 +1,5 @@
-import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType } from "./Enums";
-import { SmartEVSEBase } from "./SmartEVSEBase";
+import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType } from './Enums';
+import { SmartEVSEBase } from './SmartEVSEBase';
 export declare class SmartEVSENodeConfiguration extends SmartEVSEBase {
     /**
      * Returns the way the charging cable is connected to the Smart EVSE
@@ -26,11 +26,13 @@ export declare class SmartEVSENodeConfiguration extends SmartEVSEBase {
     /**
      * Returns the configured maximum accepted charging current by the vehicle
      * @returns {number} Amps
+     * Moved to System Configuration in newer FW versions
      */
     get startChargingAtSurplusSolarCurrent(): Promise<number>;
     /**
      * Returns the configured solar charging time at 6 Amps
      * @returns {number} mins (0: Disabled)
+     * Moved to System Configuration in newer FW versions
      */
     get stopSolarChargingAt6AmpsAfter(): Promise<number>;
     /**
@@ -43,6 +45,8 @@ export declare class SmartEVSENodeConfiguration extends SmartEVSEBase {
     get residualCurrentMonitorEnabled(): Promise<boolean>;
     /**
      * Returns how much grid power (A) is allowed when solar charging
+     * @returns {number} Amps
+     * Moved to System Configuration in newer FW versions
      */
     get allowedGridPowerWhenSolarCharging(): Promise<number>;
     /**

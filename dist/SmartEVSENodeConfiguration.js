@@ -93,6 +93,7 @@ class SmartEVSENodeConfiguration extends SmartEVSEBase_1.SmartEVSEBase {
     /**
      * Returns the configured maximum accepted charging current by the vehicle
      * @returns {number} Amps
+     * Moved to System Configuration in newer FW versions
      */
     get startChargingAtSurplusSolarCurrent() {
         return this.modbusConn.getRegister(this.getMappedAddress('startChargingAtSurplusSolarCurrent'));
@@ -100,6 +101,7 @@ class SmartEVSENodeConfiguration extends SmartEVSEBase_1.SmartEVSEBase {
     /**
      * Returns the configured solar charging time at 6 Amps
      * @returns {number} mins (0: Disabled)
+     * Moved to System Configuration in newer FW versions
      */
     get stopSolarChargingAt6AmpsAfter() {
         return this.modbusConn.getRegister(this.getMappedAddress('stopSolarChargingAt6AmpsAfter'));
@@ -139,6 +141,8 @@ class SmartEVSENodeConfiguration extends SmartEVSEBase_1.SmartEVSEBase {
     }
     /**
      * Returns how much grid power (A) is allowed when solar charging
+     * @returns {number} Amps
+     * Moved to System Configuration in newer FW versions
      */
     get allowedGridPowerWhenSolarCharging() {
         return this.modbusConn.getRegister(this.getMappedAddress('allowedGridPowerWhenSolarCharging'));

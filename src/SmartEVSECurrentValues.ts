@@ -1,3 +1,4 @@
+import { FirmwareVersion } from '.';
 import { ErrorState, Mode, State } from './Enums';
 import { SmartEVSEBase } from './SmartEVSEBase';
 
@@ -7,7 +8,7 @@ export class SmartEVSECurrentValues extends SmartEVSEBase {
    * @todo Can be combined with errorState?
    * @todo Add missing A & D states
    */
-   public get state(): Promise<State> {
+  public get state(): Promise<State> {
     return new Promise(async (resolve) => {
       const state = await this.modbusConn.getRegister(this.getMappedAddress('currentState'));
       const stateCode = String.fromCharCode(state);
@@ -62,53 +63,12 @@ export class SmartEVSECurrentValues extends SmartEVSEBase {
   }
 
   /**
-   * Returns the maximum achieved charging current (in this charging session?)
-   * @returns {number} Amps
-   */
-  public get maxChargingCurrent(): Promise<number> {
-    return this.modbusConn.getRegister(this.getMappedAddress('maxChargingCurrent'));
-  }
-
-  /**
-   * Returns the minimym achieved charging current (in this charging session?)
-   * @returns {number} Amps
-   */
-  public get minChargingCurrent(): Promise<number> {
-    return this.modbusConn.getRegister(this.getMappedAddress('minChargingCurrent'));
-  }
-
-  /**
-   * Returns the number of used phases (in this charging session?)
-   */
-  public get usedPhases(): Promise<number> {
-    throw Error('Not implemented');
-  }
-
-  /**
-   * Returns the real current charging current (in this charging session?)
-   */
-  public get realChargingCurrent(): Promise<number> {
-    throw Error('Not implemented');
-  }
-
-  /**
    * Returns the current charging current (in this charging session?)
    * @returns {number} Amps
    */
   public get chargingCurrent(): Promise<number> {
     return new Promise(async (resolve) => {
       resolve((await this.modbusConn.getRegister(this.getMappedAddress('chargingCurrent'))) / 10);
-    });
-  }
-
-  /**
-   * Returns ?
-   * @returns {boolean} ?
-   * @todo Better describe this method/output
-   */
-  public get access(): Promise<boolean> {
-    return new Promise(async (resolve) => {
-      resolve((await this.modbusConn.getRegister(this.getMappedAddress('access'))) == 1);
     });
   }
 
@@ -130,5 +90,74 @@ export class SmartEVSECurrentValues extends SmartEVSEBase {
           break;
       }
     });
+  }
+
+  /**
+   * Returns the number of seconds remaining on the solar timer
+   * @returns {number} seconds
+   */
+  public get solarTimer(): Promise<number> {
+    if (this.config.fw == FirmwareVersion.Old) throw Error('Not available on this FW');
+    return this.modbusConn.getRegister(this.getMappedAddress('solarTimer'));
+  }
+
+  /**
+   * Returns ?
+   * @returns {boolean} ?
+   * @todo Better describe this method/output
+   */
+  public get access(): Promise<boolean> {
+    return new Promise(async (resolve) => {
+      resolve((await this.modbusConn.getRegister(this.getMappedAddress('access'))) == 1);
+    });
+  }
+
+  /**
+   * Returns the minimum achieved charging current (in this charging session?)
+   * @returns {number} Amps
+   */
+  public get minChargingCurrent(): Promise<number> {
+    if (this.config.fw == FirmwareVersion.New) throw Error('Not available on this FW');
+    return this.modbusConn.getRegister(this.getMappedAddress('minChargingCurrent'));
+  }
+
+  /**
+   * Returns the maximum achieved charging current (in this charging session?)
+   * @returns {number} Amps
+   */
+  public get maxChargingCurrent(): Promise<number> {
+    return this.modbusConn.getRegister(this.getMappedAddress('maxChargingCurrent'));
+  }
+
+  /**
+   * Returns the number of used phases (in this charging session?)
+   */
+  public get usedPhases(): Promise<number> {
+    throw Error('Not implemented');
+  }
+
+  /**
+   * Returns the real current charging current (in this charging session?)
+   */
+  public get realChargingCurrent(): Promise<number> {
+    throw Error('Not implemented');
+  }
+
+  /**
+   * Returns the temperature of the Smart EVSE
+   * @returns {number} K
+   */
+  public get temperature(): Promise<number> {
+    if (this.config.fw == FirmwareVersion.Old) throw Error('Not available on this FW');
+    return this.modbusConn.getRegister(this.getMappedAddress('temperature'));
+  }
+
+  /**
+   * Returns the serial number of the Smart EVSE
+   * @returns {number}
+   */
+  public get serial(): Promise<number> {
+    if (this.config.fw == FirmwareVersion.Old) throw Error('Not available on this FW');
+    return this.modbusConn.getRegister(this.getMappedAddress('serial'));
   }
 }
