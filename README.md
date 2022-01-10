@@ -59,7 +59,6 @@ The PE11/PW11 offers some other settings as well on the 'serial port' side. Thes
 You can use the same Modbus gateway for both the SmartEVSE and your kWh meter. But make sure the meter is configured to use the same baud rate and a non conflicting Modbus address (10 - 247)
 
 ## Credits
-
 Thanks [bobosch](https://github.com/bobosch) & [mstegen](https://github.com/mstegen) for the beautiful work on [SmartEVSE](https://github.com/SmartEVSE/SmartEVSE-2)
 
 This package is provided as a small hobby project. Once everything is up and running in my setup at home, my motivation to maintain this repo might drop, so contributions are very welcome!
