@@ -39,10 +39,10 @@ In theory, a direct RS485 connection should also be feasible to implement. You a
 
 ## Modbus gateway configuration
 ### Serial port settings
-- Baud rate = 9600
-- Data bits = 8
-- Stop bits = 1
-- Parity = None
+- Baud rate: 9600
+- Data bits: 8
+- Stop bits: 1
+- Parity: None
 - Protocol: Modbus (at the bottom on the PE11/PW11)
 
 The PE11/PW11 offers some other settings as well on the 'serial port' side. These can be left default:
@@ -54,6 +54,9 @@ The PE11/PW11 offers some other settings as well on the 'serial port' side. Thes
 ### Communication settings
 - Type: TCP
 - Port: 502 (if you set a different port, make sure to configure it in the settings of this package)
+
+### kWh meters (f.e. SDM630)
+You can use the same Modbus gateway for both the SmartEVSE and your kWh meter. But make sure the meter is configured to use the same baud rate and a non conflicting Modbus address (10 - 247)
 
 ## Credits
 
