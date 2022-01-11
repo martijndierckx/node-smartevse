@@ -9,7 +9,7 @@ export class ModbusConnection {
     return new Promise((resolve) => {
       const modbusConn = new ModbusConnection();
       modbusConn.socket = new Socket();
-      modbusConn.conn = new Modbus.client.TCP(modbusConn.socket, config.slaveId);
+      modbusConn.conn = new Modbus.client.TCP(modbusConn.socket, config.slaveId, 3000);
 
       // Events
       modbusConn.socket.on('connect', () => {

@@ -5,7 +5,6 @@ import { SmartEVSECurrentValues } from './SmartEVSECurrentValues';
 import { SmartEVSENodeConfiguration } from './SmartEVSENodeConfiguration';
 import { SmartEVSESystemConfiguration } from './SmartEVSESystemConfiguration';
 
-
 export class SmartEVSE extends SmartEVSEBase {
   /**
    * Creates a connection to the Modbus TCP gateway and the Smart EVSE
@@ -19,7 +18,7 @@ export class SmartEVSE extends SmartEVSEBase {
     const smartEVSE = new SmartEVSE(opts);
 
     // Determine Modbus connection config
-    const defaultSlaveID = smartEVSE.config.fw == FirmwareVersion.New|| smartEVSE.config.fw === undefined ? 1 : 0;
+    const defaultSlaveID = smartEVSE.config.fw == FirmwareVersion.New || smartEVSE.config.fw === undefined ? 1 : 0;
     const connOpts = {
       host: smartEVSE.config.host,
       port: smartEVSE.config.port ?? 502,
