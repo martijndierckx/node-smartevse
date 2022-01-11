@@ -26,7 +26,7 @@ export enum Mode {
 
 export enum ConnectionType {
   Socket = 'socket',
-  FixedCable = 'cable'
+  FixedCable = 'fixed-cable'
 }
 
 export enum CableLockType {
@@ -47,7 +47,7 @@ export enum LoadBalancingConfig {
   Node7 = 'node7' // Only possible on > FW 2.20
 }
 
-export enum ExternalSwitchConfiguration {
+export enum ExternalSwitchType {
   Disabled = 'disabled',
   AccessPushButton = 'access-push-button',
   AccessSwitch = 'access-switch',

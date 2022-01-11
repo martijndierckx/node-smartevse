@@ -1,4 +1,4 @@
-import { ConnectionType, LoadBalancingConfig, CableLockType, ExternalSwitchConfiguration, EnergyMeterType, FirmwareVersion } from './Enums';
+import { ConnectionType, LoadBalancingConfig, CableLockType, EnergyMeterType, ExternalSwitchType } from './Enums';
 import { SmartEVSEBase } from './SmartEVSEBase';
 
 export class SmartEVSENodeConfiguration extends SmartEVSEBase {
@@ -114,24 +114,24 @@ export class SmartEVSENodeConfiguration extends SmartEVSEBase {
   /**
    * Returns the configuration for the external switch
    */
-  public get externalSwitchConfiguration(): Promise<ExternalSwitchConfiguration> {
+  public get externalSwitchType(): Promise<ExternalSwitchType> {
     return new Promise(async (resolve) => {
-      const config = await this.modbusConn.getRegister(this.getMappedAddress('externalSwitchConfiguration'));
+      const config = await this.modbusConn.getRegister(this.getMappedAddress('externalSwitchType'));
       switch (config) {
         case 0:
-          resolve(ExternalSwitchConfiguration.Disabled);
+          resolve(ExternalSwitchType.Disabled);
           break;
         case 1:
-          resolve(ExternalSwitchConfiguration.AccessPushButton);
+          resolve(ExternalSwitchType.AccessPushButton);
           break;
         case 2:
-          resolve(ExternalSwitchConfiguration.AccessSwitch);
+          resolve(ExternalSwitchType.AccessSwitch);
           break;
         case 3:
-          resolve(ExternalSwitchConfiguration.SmartSolarPushButton);
+          resolve(ExternalSwitchType.SmartSolarPushButton);
           break;
         case 4:
-          resolve(ExternalSwitchConfiguration.SmartSolarSwitch);
+          resolve(ExternalSwitchType.SmartSolarSwitch);
           break;
       }
     });
