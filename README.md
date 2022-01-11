@@ -63,4 +63,4 @@ Thanks [bobosch](https://github.com/bobosch) & [mstegen](https://github.com/mste
 
 This package is provided as a small hobby project. Once everything is up and running in my setup at home, my motivation to maintain this repo might drop, so contributions are very welcome!
 
-Tested with a single SmartEVSE on FW 2.20 together with an SDM630 kWh meter, connected via a PE11-H Modbus gateway.
+Tested with a single SmartEVSE on FW 2.13 & 2.30 together with an SDM630 kWh meter, connected via a PE11-H Modbus gateway.
